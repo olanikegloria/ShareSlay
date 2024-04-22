@@ -1,12 +1,15 @@
 const config = require('config');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const routes = require('./startups/routes'); 
 require('./startups/db');
 
+
+app.use(cors());
+
+
 routes(app);
-
-
 
 if(!config.get('jwtPrivateKey')){
     console.error('fatal error: jwtprivatekey is not set')
